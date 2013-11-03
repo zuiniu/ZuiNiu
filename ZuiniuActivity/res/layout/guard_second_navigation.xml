@@ -1,0 +1,23 @@
+<!-- 导航布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Guard_Second_Navigation" >
+
+   
+   <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+         />
+      <com.viewpagerindicator.IconPageIndicator
+        android:id="@+id/indicator"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="31dp"
+        />
+    
+</RelativeLayout>

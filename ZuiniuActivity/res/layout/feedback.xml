@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#e8e8e8"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="46dp"
+        android:background="@drawable/home_head_bg" >
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="66dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/selector_back"
+            android:onClick="onClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/feedback_titile"
+            android:textColor="#333333"
+            android:textSize="15dp" />
+
+        <ImageButton
+            android:id="@+id/submit"
+            android:layout_width="66dp"
+            android:layout_height="28dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/selector_submit"
+            android:onClick="onClick" />
+    </RelativeLayout>
+
+   <EditText
+        android:id="@+id/edit"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="12dp"
+        android:layout_weight="1.0"
+        android:background="@drawable/selector_edittext"
+        android:gravity="top"
+        android:hint="@string/feedback_hint"
+        android:paddingBottom="0dp"
+        android:paddingTop="5dp"
+        android:textColor="#969696"
+        android:textSize="13dp" />
+    <TextView
+        android:id="@+id/contactDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:text="@string/feedback_contact"
+        android:textColor="#666666"
+        android:textSize="13dp" />
+
+    <EditText
+        android:id="@+id/contact"
+        android:layout_width="fill_parent"
+        android:layout_height="39dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/selector_edittext"
+        android:hint="@string/feedback_contact_hint"
+        android:paddingBottom="0dp"
+        android:paddingTop="0dp"
+        android:textColor="#969696"
+        android:textSize="13dp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:text="@string/feedback_desc"
+        android:textColor="#666666"
+        android:textSize="13dp" />
+
+</LinearLayout>

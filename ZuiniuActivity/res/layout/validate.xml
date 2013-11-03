@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置密码fragment布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e8e8e8"
+    android:orientation="vertical" >
+
+    
+      <RelativeLayout android:id="@+id/titleLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="46dp"
+        android:background="@drawable/home_head_bg" 
+        >
+        
+        <TextView  
+           android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#333333"
+            android:textSize="15dp"
+           android:text="@string/validate_menu"/>
+        
+        
+    </RelativeLayout>
+    
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/validate_title"
+        android:textColor="#333333"
+        android:textSize="13dp" />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="210dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_edittext"
+        android:hint="@string/setting_pass_hint"
+        android:paddingBottom="0dp"
+        android:paddingTop="0dp"
+        android:password="true"
+        android:textColor="#969696"
+        android:textSize="13dp" 
+        android:inputType="textPassword"
+        
+        />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="102dp"
+        android:layout_height="43dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_confirm"
+        />
+
+</LinearLayout>

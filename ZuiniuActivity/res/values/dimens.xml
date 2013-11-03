@@ -1,0 +1,12 @@
+<resources>
+
+
+    <!-- widgit 图标的大小 -->
+    <dimen name="logo_size">96px</dimen>
+    <dimen name="logo_text_size">24px</dimen>
+
+    <!-- slideBar -->
+    <dimen name="slidingmenu_offset">124px</dimen>
+    <dimen name="shadow_width">0dp</dimen>
+
+</resources>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 公共 -->
+    <string name="qqmail_toast">目前qq邮箱正在测试，发到qq邮箱的邮件很可能收不到或者在垃圾箱中，强烈推荐使用网易邮箱</string>
+    <string name="network_disabled">您的网络未开启，请先开启网络然后再测试。</string>
+    <string name="app_name">最牛一号</string>
+    <string name="app_name_widget">最牛插件</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="submit">提交</string>
+    <string name="back">返回</string>
+    <string name="double_exist_prompt">再按一次回退键退出程序</string>
+    <string name="exist">退出应用</string>
+    <string name="buy">进入商店购买</string>
+    <string name="home_vertion_toast">试用版：还剩%1$s天</string>
+    <string name="changesim_sendmessage">您的手机可能已经被盗，最牛一号自动发来新卡的电话号码。</string>
+
+    <!-- 对话框 -->
+    <string name="dialog_test_message">抓拍后的照片等信息会自动发送到你所绑定的邮箱</string>
+    <string name="dialog_test_button_front">前置抓拍</string>
+    <string name="dialog_test_button_back">后置抓拍</string>
+    <string name="dialog_hide_desc">重新进入应用请添加最牛一号小插件</string>
+    <string name="dialog_version_message">软件试用已经到期</string>
+
+    <!-- 新界面 -->
+    <string name="home_alreadyStartGuard">已启动防盗保护</string>
+    <string name="home_alreadyStartGuardDesc">手机丢失后，最牛一号会会抓拍小偷的样子和周围环境并发送到你邮箱，赶紧测试一下吧</string>
+    <string name="home_text_auto">自动监听</string>
+    <string name="home_text_auto_desc">自动抓拍、录音等信息会定时发送到您的邮箱 </string>
+    <string name="home_text_hide">隐藏桌面图标</string>
+    <string name="home_text_hide_desc">桌面图标隐藏后，请添加桌面小部件进入程序</string>
+    <string name="home_text_message">短信控制</string>
+    <string name="home_text_message_desc_none">请输入您的备用手机号码</string>
+    <string name="home_text_message_desc">绑定号码：%1$s</string>
+    <string name="home_text_pocket">口袋防盗</string>
+    <string name="home_text_pocket_desc">当小偷非法从您口袋掏出手机后，会自动报警 </string>
+    <string name="home_text_email">绑定邮箱</string>
+    <!-- Menu -->
+    <string name="menu_more">更多</string>
+    <string name="menu_changepass">修改密码</string>
+    <string name="menu_feedback">客服在线</string>
+    <string name="menu_update">在线更新</string>
+    <string name="menu_email">绑定邮箱</string>
+    <string name="menu_help">使用帮助</string>
+    <string name="menu_hero">最牛英雄榜</string>
+    <string name="menu_guard">查看导航</string>
+   <string name="menu_notice">通知</string>
+    <!-- 设置页面 -->
+    <string name="setting_validate_title">请设置软件进入密码</string>
+    <string name="setting_email_desc">当手机被盗后，此邮箱用于接收最牛一号监测的小偷头像、位置、以及通话录音等重要信息。由于不可抗拒的因素，目前只支持网易邮箱。qq邮箱仅供测试，不保证正常使用。</string>
+    <string name="setting_phone_hint"></string>
+    <string name="setting_phone_desc">手机丢失后，当SIM卡被更换时，最牛一号将自动把新的卡号以短信形式发送到您备用的手机上。这时候，您可以：\n1、与其联系，有理有据的要求归还；\n2、用任意手机向丢失的手机发送短信指令，从而得到最新的监控信息。</string>
+    <string name="setting_phone_command">#zuiniu@自动监听开#\n#zuiniu@自动监听关#\n#zuiniu@抓拍一次#\n#zuiniu@打开网络#</string>
+    <string name="setting_email_title">请输入要绑定的邮箱</string>
+    <string name="setting_pass_hint">请输入密码</string>
+    <string name="setting_pass_repeat_hint">请重复输入一次</string>
+    <string name="validate_menu">安全验证</string>
+    <string name="validate_title">请输入软件密码</string>
+    <string name="setting_email_type">类型</string>
+
+    <!-- 验证 -->
+    <string name="validate_feedback_empty">请输入意见反馈内容</string>
+    <string name="validate_content_empty">请输入内容</string>
+    <string name="validate_contact_empty">请输入联系方式</string>
+    <string name="validate_password_empty">请输入密码</string>
+    <string name="validate_password_error">密码不正确，请重新输入</string>
+    <string name="validate_password_needsix">密码应该6位以上</string>
+    <string name="validate_password_notequals">两次输入的密码不一致，请重新输入</string>
+    <string name="validate_email_error">请输入合法的Email地址</string>
+    <string name="validate_phone_error">请输入合法的手机号码</string>
+    <!-- 提示 -->
+    <string name="toast_command_sended">命令已经发出，请稍候</string>
+    <string name="toast_sms_sended">短信已发出，请查收</string>
+    <string name="toast_getface">成功拍摄到了头部</string>
+    <string name="toast_testmail_success">邮件发送成功</string>
+    <string name="toast_testmail_fail">邮件发送失败，请检查网络或发件邮箱设置</string>
+    <string name="toast_testface_fail">没有拍到人脸，请把头放到摄像头前测试</string>
+
+    <!-- Dialog提示 -->
+    <string name="dialog_command_sended">命令已经发出......</string>
+    <string name="dialog_cameraStart">相机开启......</string>
+    <string name="dialog_camerarecycle">抓拍中......</string>
+    <string name="dialog_camerarecycle_error">相机异常......</string>
+    <string name="dialog_sendmail">抓拍成功，正在发送邮件......</string>
+    <string name="dialog_success">测试完成，请查看您的收件箱，万一不成功请重新测试......</string>
+    <string name="dialog_mail_failed">邮件发送失败。</string>
+    <string name="dialog_camera_failed">相机原因，测试失败。</string>
+    <string name="dialog_timeout_failed">时间超时，测试失败。</string>
+
+    <!-- 反馈 -->
+    <string name="feedback_hint">您的宝贵意见</string>
+    <string name="feedback_titile">客服在线</string>
+    <string name="feedback_contact">* 您的联系方式：（我们会尽快给您答复）</string>
+    <string name="feedback_contact_hint">微信号</string>
+    <string name="feedback_submit_success">感谢，您的意见将会帮助我们做得更好 ：）</string>
+    <string name="feedback_desc">如果您等不及的话，您可以通过微信联系最牛傻蛋\n微  信 号 : zuiniushadan\n在线时间: 9：00PM---10:00PM ，谢谢您的支持</string>
+
+    <!-- 升级设置 -->
+    <string name="update_no_update">目前已经是最新版本</string>
+    <string name="update_only_wifi">没有wifi连接， 只在wifi下更新</string>
+    <string name="update_timeout">超时</string>
+
+    <!-- 最牛英雄榜 -->
+    <string name="hero_title_desc">感谢为最牛一号做出卓越贡献的朋友，对最牛一号的宣传起到积极作用或者对软件改进提出好的意见的朋友，都可以联系傻蛋 申请上榜\n最牛傻蛋微信号: zuiniushadan\n最牛一号公测群: 214345108 </string>
+    <string name="hero_shadan_name">\@最牛傻蛋</string>
+    <string name="hero_shadan_desc">只有极致的产品才能改变世界。 </string>
+    <string name="hero_shadan_link">http://weibo.com/zuiniuwang</string>
+    <string name="hero_william_name">\@william</string>
+    <string name="hero_william_desc">不但追求技术的精纯，更重要的是学以致用。 </string>
+    <string name="hero_shanting_name">\@善听</string>
+    <string name="hero_shanting_desc">设计的核心不仅是创意，更是态度。 </string>
+    <string name="hero_nongmin_name">\@一个爱搞机的农民</string>
+    <string name="hero_nongmin_desc">最牛一号的绝对的忠实粉丝，伴随着最牛一号一同成长 。</string>
+    <string name="hero_daxiong_name">\@一只很贱的熊</string>
+    <string name="hero_daxiong_desc">喜欢做自己喜欢的事情，并且追求完美。</string>
+    <string name="hero_guoyong_name">\@GuoYong-</string>
+    <string name="hero_guoyong_desc">魅族论坛ID：党的政策好   最牛一号的铁粉，提供了免杀的功能。</string>
+    <string name="hero_lobo_name">\@Lobo--</string>
+    <string name="hero_lobo_desc">最牛铁粉，对UI上提出了修改意见。</string>
+
+</resources>

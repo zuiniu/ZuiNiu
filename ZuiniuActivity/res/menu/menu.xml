@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_test"
+        android:orderInCategory="100"
+        android:title="进入测试页面"/>
+    
+     <item
+        android:id="@+id/menu_setting"
+        android:orderInCategory="100"
+        android:title="进入设置页面"/>
+     
+         <item 
+        android:id="@+id/menu_guard"
+        android:orderInCategory="100" 
+        android:title="进入导航页面"/>
+         
+            <item 
+        android:id="@+id/menu_update"
+        android:orderInCategory="100" 
+        android:title="软件升级"/>
+         
+</menu>

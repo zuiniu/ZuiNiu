@@ -1,0 +1,29 @@
+<!-- 初始页布局 显示一个logo,然后进入主页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mid_bg_repeat"
+    tools:context=".Guard_Second_Navigation" 
+    >
+
+    <ImageView
+        android:id="@+id/slogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	     android:layout_centerHorizontal="true"
+	     android:layout_alignParentTop="true"
+	     android:layout_marginTop="122dp"
+        android:src="@drawable/slogan" />
+    
+    <ImageView
+        android:id="@+id/meizu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	     android:layout_centerHorizontal="true"
+	     android:layout_alignParentBottom="true"
+	     android:layout_marginBottom="60dp"
+        android:src="@drawable/meizu" 
+        />
+
+</RelativeLayout>

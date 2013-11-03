@@ -1,0 +1,24 @@
+<!-- 导航页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<ImageView   android:id="@+id/image"
+      android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="fitXY"
+    
+    />
+
+	<ImageButton   android:id="@+id/next"
+      android:layout_width="135dp"
+    android:layout_height="53dp"
+    android:background="@drawable/selector_start"
+    android:layout_marginTop="232dp"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentTop="true"
+        android:visibility="gone"
+    />
+
+</RelativeLayout>
