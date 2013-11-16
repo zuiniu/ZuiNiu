@@ -1,32 +1,27 @@
 package com.zuiniuwang.android.guardthief.dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.RelativeLayout;
 
 import com.zuiniuwang.android.guardthief.Const;
 import com.zuiniuwang.android.guardthief.R;
-import com.zuiniuwang.android.guardthief.ui.Help;
-import com.zuiniuwang.android.guardthief.util.NavigationUtil;
 
-public class PopDialogForSms  {
+public class PopDialogForSms {
 
 	/*********** 页面变量 *********/
 	private Context mContext;// 上下文
 	private Handler handler;
-
-	ImageView image;
-
+	private DialogPicBean[] mDialogPicBeans;
+	RelativeLayout picLayout;
 	ImageView know, unknow;
-
-	private int resouceId = 0;
 
 	/** 静态字段 */
 	private SharedPreferences preferences = null;
@@ -35,17 +30,12 @@ public class PopDialogForSms  {
 
 	private String preferenceName = "";
 
-	/**
-	 * 构造函数，采用默认值
-	 * 
-	 * @param context
-	 */
-	public PopDialogForSms(final Context context, Handler handler, int resourceId) {
+	public PopDialogForSms(final Context context, Handler handler,
+			DialogPicBean... mDialogPicBeans) {
 		this.mContext = context;
-		this.handler = handler;
-		this.resouceId = resourceId;
-		preferenceName = resourceId + "name" + Const.VERSION;
-
+		this.mDialogPicBeans = mDialogPicBeans;
+		preferenceName = mDialogPicBeans[0].resId + "name" + Const.VERSION;
+		this.handler=handler;
 		preferences = context.getSharedPreferences(preferenceName,
 				Context.MODE_WORLD_READABLE);
 		this.editor = preferences.edit();
@@ -56,7 +46,7 @@ public class PopDialogForSms  {
 	public Dialog BulidDialog() {
 		this.dialog = new Dialog(mContext, R.style.popDialog);
 		dialog.setContentView(mLayout);
-		 dialog.setCanceledOnTouchOutside(false);
+		dialog.setCanceledOnTouchOutside(false);
 		return dialog;
 	}
 
@@ -77,20 +67,32 @@ public class PopDialogForSms  {
 	private void findviews() {
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		mLayout = inflater.inflate(R.layout.pop, null);
-		image = (ImageView) mLayout.findViewById(R.id.image);
-		image.setBackgroundResource(resouceId);
+		picLayout = (RelativeLayout) mLayout.findViewById(R.id.layout);
+
+		if (mDialogPicBeans != null) {
+			for (DialogPicBean picBean : mDialogPicBeans) {
+				ImageView image = new ImageView(mContext);
+				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+				params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+				params.topMargin = picBean.topMargin;
+				image.setImageResource(picBean.resId);
+				picLayout.addView(image, params);
+			}
+		}
 
 		know = (ImageView) mLayout.findViewById(R.id.know);
 		unknow = (ImageView) mLayout.findViewById(R.id.unknow);
 
 		know.setVisibility(View.GONE);
 		unknow.setVisibility(View.GONE);
-		
+
 		handler.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				image.setOnClickListener(new OnClickListener() {
+				mLayout.setOnClickListener(new OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
@@ -126,6 +128,5 @@ public class PopDialogForSms  {
 		editor.putInt(preferenceName, value);
 		editor.commit();
 	}
-
 
 }

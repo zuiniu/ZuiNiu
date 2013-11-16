@@ -27,11 +27,9 @@ import com.zuiniuwang.android.guardthief.util.NavigationUtil;
 
 public class MenuListFragment extends Fragment {
 
-	private static final int MENUID_CHANGEPASS = 1;
 	private static final int MENUID_FEEDBACK = 2;
 	private static final int MENUID_UPDATE = 3;
 	private static final int MENUID_HELP = 4;
-	private static final int MENUID_EMAIL = 7;
 	
 	private static final int MENUID_HERO = 5;
 	private static final int MENUID_NAVIGATION = 6;
@@ -41,15 +39,12 @@ public class MenuListFragment extends Fragment {
 	ListView mListView;
 	MenuListAdapter mMenuListAdapter;
 
-	TextView version;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
 		mView = inflater.inflate(R.layout.menulist, null);
 
-		version = (TextView) mView.findViewById(R.id.version);
-		version.setText(Const.VERSION);
 
 		mListView = (ListView) mView.findViewById(R.id.listview);
 
@@ -65,42 +60,23 @@ public class MenuListFragment extends Fragment {
 				MenuBean bean = (MenuBean) arg0.getAdapter().getItem(arg2);
 				int id = bean.id;
 				switch (id) {
-				case MENUID_CHANGEPASS:
-					Intent intent = new Intent(getActivity(),
-							PasswordSetting.class);
-					intent.putExtra("name", "change");
-					startActivity(intent);
-					NavigationUtil.gotoNextFromLeft(getActivity());
-					break;
 				case MENUID_FEEDBACK:
 					startActivity(new Intent(getActivity(), FeedBack.class));
-					NavigationUtil.gotoNextFromLeft(getActivity());
 					break;
 				case MENUID_UPDATE:
 					update();
 					break;
 				case MENUID_HELP:
 					startActivity(new Intent(getActivity(), Help.class));
-					NavigationUtil.gotoNextFromLeft(getActivity());
 					break;
-				case MENUID_EMAIL:
-					Intent emailIntent=new Intent(getActivity(),EmailSetting.class);
-					emailIntent.putExtra("name", "edit");
-					startActivity(emailIntent);
-					NavigationUtil.gotoNextFromLeft(getActivity());
-					break;
-					
 				case MENUID_HERO:
 					startActivity(new Intent(getActivity(), Hero.class));
-					NavigationUtil.gotoNextFromLeft(getActivity());
 					break;
 				case MENUID_NAVIGATION:
 					startActivity(new Intent(getActivity(), Navigation.class));
-					NavigationUtil.gotoNextFromLeft(getActivity());
 					break;
 				case MENUID_NOTICE:
 					startActivity(new Intent(getActivity(), Notice.class));
-					NavigationUtil.gotoNextFromLeft(getActivity());
 					break;
 				default:
 					break;
@@ -115,11 +91,6 @@ public class MenuListFragment extends Fragment {
 
 	private List<MenuBean> getDatas() {
 		List<MenuBean> beans = new ArrayList<MenuBean>();
-		beans.add(new MenuBean(MENUID_CHANGEPASS, R.drawable.more_password,
-				getString(R.string.menu_changepass)));
-		
-		beans.add(new MenuBean(MENUID_EMAIL, R.drawable.more_email,
-				getString(R.string.menu_email)));
 		
 		beans.add(new MenuBean(MENUID_HELP, R.drawable.more_help,
 				getString(R.string.menu_help)));
@@ -137,6 +108,7 @@ public class MenuListFragment extends Fragment {
 				getString(R.string.menu_guard)));
 		beans.add(new MenuBean(MENUID_NOTICE, R.drawable.notice,
 				getString(R.string.menu_notice)));
+		
 		
 
 		return beans;

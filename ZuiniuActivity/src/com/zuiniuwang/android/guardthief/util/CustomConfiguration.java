@@ -3,12 +3,13 @@ package com.zuiniuwang.android.guardthief.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.zuiniuwang.android.guardthief.Const;
 import com.zuiniuwang.android.guardthief.GuardApplication;
-import com.zuiniuwang.android.guardthief.SendMailThread;
 import com.zuiniuwang.android.guardthief.baidu.BaiduLocation;
 import com.zuiniuwang.android.guardthief.util.PreferenceUtil.Enum_ShootPreference;
 
@@ -23,6 +24,30 @@ import com.zuiniuwang.android.guardthief.util.PreferenceUtil.Enum_ShootPreferenc
  * 
  */
 public class CustomConfiguration {
+
+	public static boolean getIsStartGprsOnSendMail() {
+		SharedPreferences p = PreferenceManager
+				.getDefaultSharedPreferences(GuardApplication.appContext);
+		return p.getBoolean("pref_gprs", false);
+	}
+	
+	/** 获取口袋间隔 */
+	public static long getPocketTime() {
+		SharedPreferences p = PreferenceManager
+				.getDefaultSharedPreferences(GuardApplication.appContext);
+		
+		String value = p.getString("pref_pocket", "8000");
+		return Long.parseLong(value);
+	}
+
+	/** 获取邮件发送频率 */
+	public static long getEmailFreequncy() {
+		SharedPreferences p = PreferenceManager
+				.getDefaultSharedPreferences(GuardApplication.appContext);
+		
+		String value = p.getString("pref_frenquncy", "28800000");
+		return Long.parseLong(value);
+	}
 
 	/**
 	 * 是否Pocket模式

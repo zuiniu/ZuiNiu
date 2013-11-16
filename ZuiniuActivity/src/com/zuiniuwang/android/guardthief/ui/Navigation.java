@@ -57,12 +57,15 @@ public class Navigation extends FragmentActivity {
 		AwakeningUtil.gotoStartState();
 
 	}
+	
 
 	protected static final int[] images = new int[] { R.drawable.lead1,
 			R.drawable.lead2, R.drawable.lead3, R.drawable.lead4,
 			R.drawable.lead5 };
 
 	public void onCreate(Bundle savedInstanceState) {
+		overridePendingTransition(R.anim.activity_scroll_from_right,R.anim.activity_fadeout);
+		getActionBar().hide();
 		super.onCreate(savedInstanceState);
 		this.mContext = Navigation.this;
 		setContentView(R.layout.guard_second_navigation);
@@ -216,15 +219,7 @@ public class Navigation extends FragmentActivity {
 		CustomConfiguration.setIsNavigationed(true);// 设置导航完毕
 		NavigationUtil.gotoMainPage(activity, false);
 		activity.finish();
-		activity.overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
-
-		// if (CustomConfiguration.isAllSetted())
-		// activity.overridePendingTransition(R.anim.push_right_in,
-		// R.anim.push_right_out);
-		// else
-		// activity.overridePendingTransition(R.anim.push_left_in,
-		// R.anim.push_left_out);
-
+		activity.overridePendingTransition(R.anim.activity_fadein,R.anim.activity_scroll_to_right);
 	}
 
 	/** 手势，判断当最后一页的时候滑动跳转到主页面 */

@@ -140,7 +140,7 @@ public class EmailSetting extends AbsSettingActivity implements OnClickListener 
 			break;
 		case R.id.back:
 			if (!dismissIMM()) {
-				backToMainActivity(true);
+				activityFinish();
 			}
 			break;
 		case R.id.type_163:

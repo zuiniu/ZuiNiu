@@ -3,11 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <ImageView
-        android:id="@+id/image"
+ <RelativeLayout
+        android:id="@+id/layout"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleType="fitXY" />
+        android:layout_height="fill_parent" 
+        >
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"

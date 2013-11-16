@@ -30,4 +30,9 @@ public class DensityUtil {
 	public static int getScreenHeight(Context context) {
 		return context.getResources().getDisplayMetrics().heightPixels;
 	}
+	
+	public static int getMaxWidthDp(Context context){
+		return px2dip(context, getScreenWidth(context));
+	}
+	
 }

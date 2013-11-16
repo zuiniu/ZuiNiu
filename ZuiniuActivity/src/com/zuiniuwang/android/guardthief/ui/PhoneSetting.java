@@ -17,8 +17,11 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.zuiniuwang.android.guardthief.R;
+import com.zuiniuwang.android.guardthief.dialog.DialogPicBean;
+import com.zuiniuwang.android.guardthief.dialog.PopDialog;
 import com.zuiniuwang.android.guardthief.dialog.PopDialogForSms;
 import com.zuiniuwang.android.guardthief.util.CustomConfiguration;
+import com.zuiniuwang.android.guardthief.util.DensityUtil;
 import com.zuiniuwang.android.guardthief.util.UiUtil;
 
 public class PhoneSetting extends AbsActivity implements OnClickListener {
@@ -57,9 +60,18 @@ public class PhoneSetting extends AbsActivity implements OnClickListener {
 			}
 		});
 
+		float scale=1;
+		//宽度小于320，mx
+		if(DensityUtil.getMaxWidthDp(mContext)<=320	){
+			scale=0.75f;
+		}
 		// 弹出pop
 		PopDialogForSms popDialog = new PopDialogForSms(mContext, handler,
-				R.drawable.pop_setting);
+				new DialogPicBean(R.drawable.set_pic, DensityUtil.dip2px(
+						mContext, 20*scale)), new DialogPicBean(R.drawable.set_text,
+						DensityUtil.dip2px(mContext, 390*scale)), new DialogPicBean(
+						R.drawable.set_btn, DensityUtil.dip2px(mContext, 508*scale)));
+
 		if (!popDialog.getIsStart()) {
 			if (popDialog.getDialog() == null) {
 				popDialog.BulidDialog();

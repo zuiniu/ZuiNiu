@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textColor="#000000"
-            android:textSize="15dp" 
+            android:textSize="18dp" 
             
             />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:textColor="#b5b5b5"
-            android:textSize="9dp" />
+            android:textSize="15dp" />
 
         <View
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:layout_marginTop="10dp"
             android:textColor="#3d3d3d"
             android:lineSpacingMultiplier="1.5"
-            android:textSize="10dp" />
+            android:textSize="15dp" />
 
     </LinearLayout>
 

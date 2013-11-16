@@ -153,7 +153,7 @@ public class PasswordSetting extends AbsSettingActivity implements
 			break;
 		case R.id.back:
 			if (!dismissIMM()) {
-				backToMainActivity(true);
+				activityFinish();
 			}
 
 			break;

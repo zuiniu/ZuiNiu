@@ -15,24 +15,25 @@
     <RelativeLayout
         android:id="@+id/titleLayout"
         android:layout_width="fill_parent"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/home_head_bg"
         android:visibility="gone" >
 
         <ImageButton
             android:id="@+id/back"
-            android:layout_width="66dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/selector_back"
+            android:background="@drawable/email_title"
             android:onClick="onClick" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:layout_toRightOf="@id/back"
             android:text="@string/home_text_email"
             android:textColor="#333333"
             android:textSize="15dp" />
@@ -94,35 +95,35 @@
             android:textColor="#888888"
             android:textSize="13dp" />
 
-        <CheckBox android:id="@+id/type_163"
+        <CheckBox
+            android:id="@+id/type_163"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/selector_check"
+            android:checked="true"
+            android:paddingLeft="22dp"
             android:text="\@163.com  "
             android:textColor="#888888"
-            android:textSize="13dp"
-            android:paddingLeft="22dp"
-            android:checked="true"
-             />
+            android:textSize="13dp" />
 
-        <CheckBox android:id="@+id/type_126"
+        <CheckBox
+            android:id="@+id/type_126"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/selector_check"
+            android:paddingLeft="22dp"
             android:text="\@126.com"
             android:textColor="#888888"
-            android:textSize="13dp" 
-             android:paddingLeft="22dp"
-            />
-        
+            android:textSize="13dp" />
     </LinearLayout>
 
-     <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="56dp"
         android:orientation="horizontal" >
-         <TextView
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -130,33 +131,30 @@
             android:layout_marginRight="10dp"
             android:text="@string/setting_email_type"
             android:textColor="#888888"
-            android:textSize="13dp" 
-            android:visibility="invisible"
-            />
-         <CheckBox android:id="@+id/type_yeah"
+            android:textSize="13dp"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/type_yeah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/selector_check"
+            android:paddingLeft="22dp"
             android:text="\@yeah.net  "
             android:textColor="#888888"
-            android:textSize="13dp" 
-             android:paddingLeft="22dp"
-            />
-           <CheckBox android:id="@+id/type_qq"
+            android:textSize="13dp" />
+
+        <CheckBox
+            android:id="@+id/type_qq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/selector_check"
+            android:paddingLeft="22dp"
             android:text="\@qq.com"
             android:textColor="#888888"
-            android:textSize="13dp" 
-             android:paddingLeft="22dp"
-             
-            />
-         
-     </LinearLayout>
-    
-    
-    
+            android:textSize="13dp" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/next"
         android:layout_width="102dp"

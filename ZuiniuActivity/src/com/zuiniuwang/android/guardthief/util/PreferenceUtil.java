@@ -116,7 +116,7 @@ public class PreferenceUtil {
         /**是否通知过过期*/
         ISNOTIFY_OUTOFDATE("notify_outofDate","false"),
     	/**是否有manager权限*/
-    	ISROOT("isroot","false")
+    	ISROOT("isroot","false"),
         ;
 
         /**

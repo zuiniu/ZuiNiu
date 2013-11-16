@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zuiniuwang.android.guardthief"
-    android:versionCode="17"
-    android:versionName="v1.0.1beta" >
+    android:versionCode="3"
+    android:versionName="v1.1.1beta" >
 
     <application
         android:name=".GuardApplication"
@@ -14,6 +14,10 @@
         android:persistent="true"
          >
         
+        
+        <meta-data
+            android:name="pass"
+            android:value="guorl@2092923" />
 
         <receiver android:name=".MyWidgetProvider" >
             <meta-data
@@ -63,6 +67,13 @@
             android:excludeFromRecents="true"
             android:screenOrientation="portrait" >
         </activity>
+           <activity
+            android:name=".ui.Setting"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        
         <activity
             android:name=".ui.Validate"
             android:excludeFromRecents="true"
@@ -141,6 +152,12 @@
         <!-- 手机命令广播 -->
         <receiver android:name=".receiver.SmsCommandReceiver" >
         </receiver>
+        <receiver android:name=".receiver.PhoneStateReceiver" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
 
         <!-- 百度定位服务   android:process=":remote" -->
         <service
@@ -171,7 +188,7 @@
             android:value="Channel ID" />
     </application>
 
-    <uses-sdk android:minSdkVersion="10" />
+    <uses-sdk android:minSdkVersion="14" />
 
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

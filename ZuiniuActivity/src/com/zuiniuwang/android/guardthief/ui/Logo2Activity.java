@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.KeyEvent;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import com.zuiniuwang.android.guardthief.GuardApplication;
 import com.zuiniuwang.android.guardthief.R;
 import com.zuiniuwang.android.guardthief.util.NavigationUtil;
+import com.zuiniuwang.android.guardthief.util.UiUtil;
 
 /**
  * 首页
@@ -30,10 +32,14 @@ public class Logo2Activity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.context = Logo2Activity.this;
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.guard_one_logo);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN); // 全屏显示
 
+		// 魅族手机隐藏menu
+		UiUtil.hideMeizuMenu(getWindow().getDecorView());
+		
 //		image = (ImageView) findViewById(R.id.image);
 //
 //		AnimationSet animationset = new AnimationSet(true);

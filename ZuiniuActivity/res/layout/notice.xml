@@ -7,30 +7,28 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/home_head_bg" >
 
-        <ImageButton android:id="@+id/back"
-            android:layout_width="66dp"
-            android:layout_height="28dp"
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/selector_back"
-            android:onClick="onClick"
-             />
-        
-        <TextView  
-           android:layout_width="wrap_content"
+            android:background="@drawable/notice_title"
+            android:onClick="onClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:layout_toRightOf="@id/back"
+            android:text="@string/menu_notice"
             android:textColor="#333333"
-            android:textSize="15dp"
-           android:text="@string/menu_notice"/>
-        
-        
+            android:textSize="15dp" />
     </RelativeLayout>
-    
 
     <ListView
         android:id="@+id/listview"
@@ -38,8 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:cacheColorHint="#00000000"
-        android:scrollbars="none" 
-           android:listSelector="@null"
-        />
+        android:listSelector="@null"
+        android:scrollbars="none" />
 
 </LinearLayout>

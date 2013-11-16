@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.zuiniuwang.android.guardthief.R;
 import com.zuiniuwang.android.guardthief.bean.HelpBean;
+import com.zuiniuwang.android.guardthief.dialog.DialogPicBean;
+import com.zuiniuwang.android.guardthief.dialog.PopDialog;
 import com.zuiniuwang.android.guardthief.dialog.PopForHelpDialog;
 import com.zuiniuwang.android.guardthief.util.DensityUtil;
 
@@ -35,12 +37,17 @@ public class HelpViewAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 
 	int imageHeight, imageWidth;
-
+	float scale=1;
 	public HelpViewAdapter(Context context) {
 		mContext = context;
 		mInflater = LayoutInflater.from(context);
 		imageHeight = DensityUtil.dip2px(mContext, 92);
 		imageWidth = DensityUtil.dip2px(mContext, 64);
+		
+		//宽度小于320，mx
+		if(DensityUtil.getMaxWidthDp(mContext)<=320	){
+			scale=0.75f;
+		}
 	}
 
 	public void setDatas(List<HelpBean> chats) {
@@ -108,8 +115,15 @@ public class HelpViewAdapter extends BaseAdapter {
 
 				@Override
 				public void onClick(View v) {
-					new PopForHelpDialog(mContext, R.drawable.pop_auto_help)
-							.BulidDialog().show();
+					
+					
+					new PopForHelpDialog(mContext, new DialogPicBean(
+							R.drawable.pop_auto_text1, DensityUtil.dip2px(
+									mContext, 55*scale)), new DialogPicBean(
+							R.drawable.pop_auto_pic, DensityUtil.dip2px(
+									mContext, 295*scale)), new DialogPicBean(
+							R.drawable.pop_auto_text2, DensityUtil.dip2px(
+									mContext, 395*scale))).BulidDialog().show();
 
 				}
 			});
@@ -124,9 +138,13 @@ public class HelpViewAdapter extends BaseAdapter {
 
 				@Override
 				public void onClick(View v) {
-					new PopForHelpDialog(mContext, R.drawable.pop_hide_help)
-							.BulidDialog().show();
+					new PopForHelpDialog(mContext, new DialogPicBean(
+							R.drawable.pop_hide_text, DensityUtil.dip2px(
+									mContext, 265*scale)), new DialogPicBean(
+							R.drawable.pop_hide_pic, DensityUtil.dip2px(
+									mContext, 450*scale)))
 
+					.BulidDialog().show();
 				}
 			});
 

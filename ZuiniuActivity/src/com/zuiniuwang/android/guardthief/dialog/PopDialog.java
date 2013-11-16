@@ -6,10 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.zuiniuwang.android.guardthief.Const;
 import com.zuiniuwang.android.guardthief.R;
@@ -20,13 +24,8 @@ public class PopDialog implements View.OnClickListener {
 
 	/*********** 页面变量 *********/
 	private Context mContext;// 上下文
-	private Handler handler;
-
-	ImageView image;
-
+	RelativeLayout picLayout;
 	ImageView know, unknow;
-
-	private int resouceId = 0;
 
 	/** 静态字段 */
 	private SharedPreferences preferences = null;
@@ -35,23 +34,23 @@ public class PopDialog implements View.OnClickListener {
 
 	private String preferenceName = "";
 
-	/**
-	 * 构造函数，采用默认值
-	 * 
-	 * @param context
-	 */
-	public PopDialog(final Context context, Handler handler, int resourceId) {
+	
+	private DialogPicBean[]	 mDialogPicBeans;
+
+	
+	public PopDialog(final Context context, Handler handler, DialogPicBean... mDialogPicBeans) {
 		this.mContext = context;
-		this.handler = handler;
-		this.resouceId = resourceId;
-		preferenceName = resourceId + "name" + Const.VERSION;
+		this.mDialogPicBeans = mDialogPicBeans;
+		preferenceName = mDialogPicBeans[0].resId + "name" + Const.VERSION;
 
 		preferences = context.getSharedPreferences(preferenceName,
 				Context.MODE_WORLD_READABLE);
 		this.editor = preferences.edit();
 		mLayout = GetView();// 初始化页面布局
 	}
-
+	
+	
+	
 	/** 创建AlertDialog */
 	public Dialog BulidDialog() {
 		this.dialog = new Dialog(mContext, R.style.popDialog);
@@ -69,7 +68,7 @@ public class PopDialog implements View.OnClickListener {
 	/********** UI界面控件 **********/
 	private View mLayout;
 	private Dialog dialog;
-
+	
 	public Dialog getDialog() {
 		return this.dialog;
 	}
@@ -77,9 +76,24 @@ public class PopDialog implements View.OnClickListener {
 	private void findviews() {
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		mLayout = inflater.inflate(R.layout.pop, null);
-		image = (ImageView) mLayout.findViewById(R.id.image);
-		image.setBackgroundResource(resouceId);
 
+		picLayout=(RelativeLayout)mLayout.findViewById(R.id.layout);
+		
+		if(mDialogPicBeans!=null){
+			for(DialogPicBean picBean:mDialogPicBeans){
+				ImageView image=new ImageView(mContext);
+				RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+				params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+				params.topMargin=picBean.topMargin;
+				image.setImageResource(picBean.resId);
+				picLayout.addView(image,params);
+			}
+		}
+	
+		
+		
+		
 		know = (ImageView) mLayout.findViewById(R.id.know);
 		unknow = (ImageView) mLayout.findViewById(R.id.unknow);
 
@@ -121,7 +135,6 @@ public class PopDialog implements View.OnClickListener {
 			break;
 		case R.id.unknow:
 			mContext.startActivity(new Intent(mContext, Help.class));
-			NavigationUtil.gotoNextFromLeft((Activity)mContext);
 			break;
 		default:
 			break;

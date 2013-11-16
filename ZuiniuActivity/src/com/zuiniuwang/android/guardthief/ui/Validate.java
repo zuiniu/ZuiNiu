@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
@@ -38,6 +39,8 @@ public class Validate extends Activity implements OnClickListener,OnFocusChangeL
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		super.onCreate(savedInstanceState);
 		mView = LayoutInflater.from(Validate.this).inflate(R.layout.validate,
 				null);
@@ -46,8 +49,6 @@ public class Validate extends Activity implements OnClickListener,OnFocusChangeL
 				AwakeningUtil.EXTRA_VALIDATE);
 		findViews();
 
-		// 魅族手机隐藏menu
-		UiUtil.hideMeizuMenu(mView);
 
 		/** 进入页面设置密码输入框选中，并弹出对话框 */
 		mHandler.postDelayed(new Runnable() {

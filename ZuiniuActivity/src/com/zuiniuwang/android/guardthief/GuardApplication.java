@@ -252,7 +252,6 @@ public class GuardApplication extends Application {
 	public static void stopAllFunction() {
 		if (CustomConfiguration.isStartGuard()) {
 			CustomConfiguration.setIsStartGuard(false);
-			CustomConfiguration.setIsPocketOn(false);
 		}
 
 	}

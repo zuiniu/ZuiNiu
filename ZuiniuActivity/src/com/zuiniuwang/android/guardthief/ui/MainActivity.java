@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,10 +24,12 @@ import com.zuiniuwang.android.guardthief.GuardService;
 import com.zuiniuwang.android.guardthief.PocketWidgetProvider;
 import com.zuiniuwang.android.guardthief.R;
 import com.zuiniuwang.android.guardthief.camera.CameraManager;
+import com.zuiniuwang.android.guardthief.dialog.DialogPicBean;
 import com.zuiniuwang.android.guardthief.dialog.PopDialog;
 import com.zuiniuwang.android.guardthief.dialog.TestDialogBuilder;
 import com.zuiniuwang.android.guardthief.util.AwakeningUtil;
 import com.zuiniuwang.android.guardthief.util.CustomConfiguration;
+import com.zuiniuwang.android.guardthief.util.DensityUtil;
 import com.zuiniuwang.android.guardthief.util.NavigationUtil;
 import com.zuiniuwang.android.guardthief.util.UiUtil;
 
@@ -37,6 +40,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private RefreshReceiver receiver;
 	Handler handler = new Handler();
 	ImageButton testImageButton, menuImageButton;
+	ImageView logoImageButton;
 	private Context mContext;
 	ImageView hideSwitch, autoSwitch, pocketSwitch, messageStatus;
 
@@ -44,7 +48,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	TestDialogBuilder cameraDialogBuilder;
 	Dialog cameraDialog;
 
-	PopDialog popDialogAuto, popDialogHide,popDialogPocket;
+	PopDialog popDialogAuto, popDialogHide, popDialogPocket;
 	/** 是否开启测试 */
 	private boolean isStartTest = false;
 
@@ -54,15 +58,22 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		View mainView = LayoutInflater.from(MainActivity.this).inflate(
 				R.layout.home_frame, null);
 		mContext = MainActivity.this;
+
 		// set the Above View
 		setContentView(mainView);
 		// set the Behind View
 		setBehindContentView(R.layout.menu_frame);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.menu_frame, new MenuListFragment()).commit();
+
+		getSlidingMenu().setSecondaryMenu(R.layout.menu_frame_right);
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.menu_frame_right, new MenuListFragmentRight())
+				.commit();
 
 		findviewById();
 
@@ -81,11 +92,28 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		// 魅族手机隐藏menu
 		UiUtil.hideMeizuMenu(mainView);
 		GuardApplication.appInstance.addActivity(this);
-
-		popDialogAuto = new PopDialog(mContext, handler, R.drawable.pop_auto);
-		popDialogHide = new PopDialog(mContext, handler, R.drawable.pop_hide);
-		popDialogPocket = new PopDialog(mContext, handler, R.drawable.pop_pocket);
 		
+		float scale=1;
+		//宽度小于320，mx
+		if(DensityUtil.getMaxWidthDp(mContext)<=320	){
+			scale=0.75f;
+		}
+		
+		popDialogAuto = new PopDialog(mContext, handler, new DialogPicBean(
+				R.drawable.pop_auto_text1, DensityUtil.dip2px(mContext, 55*scale)),
+				new DialogPicBean(R.drawable.pop_auto_pic, DensityUtil.dip2px(
+						mContext, 295*scale)), new DialogPicBean(
+						R.drawable.pop_auto_text2, DensityUtil.dip2px(mContext,
+								395*scale)));
+		popDialogHide = new PopDialog(mContext, handler, new DialogPicBean(
+				R.drawable.pop_hide_text, DensityUtil.dip2px(mContext, 265*scale)),
+				new DialogPicBean(R.drawable.pop_hide_pic, DensityUtil.dip2px(
+						mContext, 450*scale)));
+		popDialogPocket = new PopDialog(mContext, handler, new DialogPicBean(
+				R.drawable.pop_pocket_text, DensityUtil.dip2px(mContext, 130*scale)),
+				new DialogPicBean(R.drawable.pop_pocket_pic, DensityUtil
+						.dip2px(mContext, 370*scale)));
+
 	}
 
 	@Override
@@ -101,20 +129,21 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void onPause() {
 		super.onPause();
+		AwakeningUtil.gotoStopState();
 		MobclickAgent.onPause(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		AwakeningUtil.gotoStartState();
 		MobclickAgent.onResume(this);
-		
+
 		if (CustomConfiguration.isSettedPhone()) {
 			messageStatus.setBackgroundResource(R.drawable.switch_right);
 		} else {
 			messageStatus.setBackgroundResource(R.drawable.switch_error);
 		}
-
 
 		// 设置短信提示
 		String phone = CustomConfiguration.getPhone();
@@ -132,6 +161,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		menuImageButton = (ImageButton) findViewById(R.id.menuImageButton);
 		testImageButton = (ImageButton) findViewById(R.id.testImageButton);
 
+		logoImageButton = (ImageView) findViewById(R.id.menuLogo);
+
 		hideSwitch = (ImageView) findViewById(R.id.hideSwitch);
 		autoSwitch = (ImageView) findViewById(R.id.autoSwitch);
 		pocketSwitch = (ImageView) findViewById(R.id.pocketSwitch);
@@ -140,14 +171,13 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		textMessage = (TextView) findViewById(R.id.textMessage);
 
 		menuImageButton.setOnClickListener(this);
+		logoImageButton.setOnClickListener(this);
+
 		testImageButton.setOnClickListener(this);
 		autoSwitch.setOnClickListener(this);
 		hideSwitch.setOnClickListener(this);
 		pocketSwitch.setOnClickListener(this);
-		
-		
 
-		licenseText = (TextView) findViewById(R.id.license);
 
 	}
 
@@ -158,6 +188,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		case R.id.menuImageButton:
 			toggle();
 			break;
+		case R.id.menuLogo:
+			showSecondaryMenu();
+			break;
+
 		case R.id.testImageButton:
 			test();
 			break;
@@ -200,17 +234,14 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.messageLayout:
 			startActivity(new Intent(mContext, PhoneSetting.class));
-			NavigationUtil.gotoNextFromLeft(this);
 			break;
 
 		case R.id.pocketSwitch:
 			boolean isPocketOn = CustomConfiguration.getIsPocketOn();
-			
+
 			if (isPocketOn) {
-				CustomConfiguration.setIsPocketOn(false);
 				initSwitch();
 			} else {
-				CustomConfiguration.setIsPocketOn(true);
 				initSwitch();
 				if (!popDialogPocket.getIsStart()) {
 					if (popDialogPocket.getDialog() == null) {
@@ -219,9 +250,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 					popDialogPocket.getDialog().show();
 				}
 			}
-			
-			
-			mContext.sendBroadcast(new Intent(PocketWidgetProvider.Refresh_ACTION));
+
 			break;
 
 		default:
@@ -231,12 +260,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void test() {
-		if(!GuardService.grpsUtil.isNetworkAvailable()){
-			Toast.makeText(mContext, R.string.network_disabled, Toast.LENGTH_LONG).show();
-		}else{
+		if (!GuardService.grpsUtil.isNetworkAvailable()) {
+			Toast.makeText(mContext, R.string.network_disabled,
+					Toast.LENGTH_LONG).show();
+		} else {
 			cameraDialog.show();
 		}
-		
 
 	}
 
@@ -381,19 +410,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 		}
 
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		AwakeningUtil.gotoStartState();
-
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		AwakeningUtil.gotoStopState();
 	}
 
 

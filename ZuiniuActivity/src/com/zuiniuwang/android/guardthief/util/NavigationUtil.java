@@ -15,15 +15,7 @@ import com.zuiniuwang.android.guardthief.ui.Validate;
 /** 页面跳转工具类 */
 public class NavigationUtil {
 
-	public static void gotoNextFromRight(Activity activity) {
-		activity.overridePendingTransition(R.anim.push_right_in,
-				R.anim.push_right_out);
-	}
 
-	public static void gotoNextFromLeft(Activity activity) {
-		activity.overridePendingTransition(R.anim.push_left_in,
-				R.anim.push_left_out);
-	}
 
 	public static void gotoNextFade(Activity activity) {
 		activity.overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);

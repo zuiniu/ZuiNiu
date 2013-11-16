@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="基本设置" >
+        <PreferenceScreen
+            android:key="pref_password"
+            android:title="修改密码" />
+        <PreferenceScreen
+            android:key="pref_email"
+            android:title="绑定邮箱" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="高级设置" >
+        <ListPreference
+            android:defaultValue="28800000"
+            android:entries="@array/pref_frenquncy_mode"
+            android:entryValues="@array/pref_frenquncy_value"
+            android:key="pref_frenquncy"
+            android:title="自动监听邮件频率" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_gprs"
+            android:title="发送监听邮件自动打开GPRS" />
+
+        <ListPreference
+            android:defaultValue="8000"
+            android:entries="@array/pref_pocket_mode"
+            android:entryValues="@array/pref_pocket_value"
+            android:key="pref_pocket"
+            android:title="口袋模式报警间隔时长" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -8,11 +8,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
 
 import com.zuiniuwang.android.guardthief.Const;
 import com.zuiniuwang.android.guardthief.GuardApplication;
+import com.zuiniuwang.android.guardthief.R;
 import com.zuiniuwang.android.guardthief.util.AwakeningUtil;
 import com.zuiniuwang.android.guardthief.util.CustomConfiguration;
 import com.zuiniuwang.android.guardthief.util.NavigationUtil;
@@ -26,6 +28,8 @@ public abstract class AbsSettingActivity extends Activity implements
 	protected View mView;
 
 	protected void onCreate(Bundle savedInstanceState) {
+		overridePendingTransition(R.anim.activity_scroll_from_right,R.anim.activity_fadeout);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		this.mContext = AbsSettingActivity.this;
 		mView = getView();
@@ -57,29 +61,30 @@ public abstract class AbsSettingActivity extends Activity implements
 
 	}
 
+	public void activityFinish(){
+		finish();
+		overridePendingTransition(R.anim.activity_fadein,R.anim.activity_scroll_to_right);
+	}
+	
 	/**
 	 * 进入主设置页面
 	 */
 	public void backToMainActivity(boolean allSetted) {
 		NavigationUtil.gotoMainPage(AbsSettingActivity.this, false);
 		finish();
-		if (allSetted) {
-			NavigationUtil.gotoNextFromRight(this);
-		} else {
-			NavigationUtil.gotoNextFromLeft(this);
-		}
+		overridePendingTransition(R.anim.activity_fadein,R.anim.activity_scroll_to_right);
 
 	}
 
-	/** 点回退键，同样进入主页面 */
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			backToMainActivity(CustomConfiguration.isAllSetted());
-			return false;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
+//	/** 点回退键，同样进入主页面 */
+//	@Override
+//	public boolean onKeyDown(int keyCode, KeyEvent event) {
+//		if (keyCode == KeyEvent.KEYCODE_BACK) {
+//			activityFinish();
+//			return false;
+//		}
+//		return super.onKeyDown(keyCode, event);
+//	}
 
 	/**
 	 * 如果没有焦点了，则关闭软键盘

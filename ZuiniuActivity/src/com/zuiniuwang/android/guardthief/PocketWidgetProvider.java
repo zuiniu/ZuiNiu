@@ -27,7 +27,6 @@ public class PocketWidgetProvider extends AppWidgetProvider {
 		super.onReceive(context, intent);
 		if (intent.getAction().equals(CLICK_NAME_ACTION)) {
 			boolean value = CustomConfiguration.getIsPocketOn();
-			CustomConfiguration.setIsPocketOn(!value);
 		}
 		initListener(context);
 	}

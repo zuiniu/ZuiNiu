@@ -1,31 +1,27 @@
 package com.zuiniuwang.android.guardthief.dialog;
 
 import android.app.Dialog;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.RelativeLayout;
 
 import com.zuiniuwang.android.guardthief.R;
 
 public class PopForHelpDialog {
 
 	/*********** 页面变量 *********/
-	private Context context;// 上下文
+	private Context mContext;// 上下文
 
-	ImageView image;
-	private int resouceId = 0;
+	private DialogPicBean[] mDialogPicBeans;
+	RelativeLayout picLayout;
 
 	ImageView know, unknow;
-	/** 静态字段 */
-	private SharedPreferences preferences = null;
-	/** 静态字段 */
-	SharedPreferences.Editor editor = null;
 
 	/**
 	 * 构造函数，采用默认值
@@ -33,19 +29,14 @@ public class PopForHelpDialog {
 	 * @param context
 	 */
 	public PopForHelpDialog(final Context context,
-			int resourceId) {
-		this.context = context;
-		this.resouceId = resourceId;
-
-		preferences = context.getSharedPreferences(String.valueOf(resouceId),
-				Context.MODE_WORLD_READABLE);
-		this.editor = preferences.edit();
+			DialogPicBean... mDialogPicBeans) {
+		this.mContext = context;
+		this.mDialogPicBeans = mDialogPicBeans;
 		mLayout = GetView();// 初始化页面布局
 	}
-
 	/** 创建AlertDialog */
 	public Dialog BulidDialog() {
-		this.dialog = new Dialog(context, R.style.popDialog);
+		this.dialog = new Dialog(mContext, R.style.popDialogForHelp);
 		dialog.setContentView(mLayout);
 		dialog.setCanceledOnTouchOutside(false);
 		return dialog;
@@ -62,10 +53,23 @@ public class PopForHelpDialog {
 	private Dialog dialog;
 
 	private void findviews() {
-		LayoutInflater inflater = LayoutInflater.from(context);
+		LayoutInflater inflater = LayoutInflater.from(mContext);
 		mLayout = inflater.inflate(R.layout.pop, null);
-		image = (ImageView) mLayout.findViewById(R.id.image);
-		image.setBackgroundResource(resouceId);
+		picLayout = (RelativeLayout) mLayout.findViewById(R.id.layout);
+
+		if (mDialogPicBeans != null) {
+			for (DialogPicBean picBean : mDialogPicBeans) {
+				ImageView image = new ImageView(mContext);
+				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+				params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+				params.topMargin = picBean.topMargin;
+				image.setImageResource(picBean.resId);
+				picLayout.addView(image, params);
+			}
+		}
+
 
 
 		know = (ImageView) mLayout.findViewById(R.id.know);
@@ -73,7 +77,7 @@ public class PopForHelpDialog {
 		know.setVisibility(View.GONE);
 		unknow.setVisibility(View.GONE);
 		
-		image.setOnClickListener(new OnClickListener() {
+		picLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {

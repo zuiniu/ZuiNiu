@@ -3,7 +3,6 @@ package com.zuiniuwang.android.guardthief.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.ActivityManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,6 +32,7 @@ public class Help extends AbsActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		listView = (ListView) findViewById(R.id.listview);
 		HelpViewAdapter adapter = new HelpViewAdapter(mContext);
 		List<HelpBean> datas = getdatas();
